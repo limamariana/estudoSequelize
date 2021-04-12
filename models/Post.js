@@ -12,6 +12,14 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: false
         }
     );
-
-    return Post;
+        // Post.associate = (models) => {
+        //     Post.belongsTo(models.Usuario, {as: "usuario", foreignKey:"usuarios_id"});
+        // }
+        Post.associate = (models) => {
+            //relação 1:N
+            Post.hasMany(models.Comentario,{as:"comentarios", foreignKey:"posts_id"})
+        }
+    
+    
+        return Post;
 }
